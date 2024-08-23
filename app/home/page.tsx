@@ -47,6 +47,7 @@ const page = () => {
         </div>
         
         <JobListingPage/>
+        
         </>
       ):(
         <>

@@ -70,10 +70,10 @@
   background: linear-gradient(90deg, #0713ff 0%, #00c8ff 100%);
 }
 
-/* @font-face {
+@font-face {
   font-family: 'Orkney';
   src: url('/public/orkney-regular.otf') format('opentype');
-} */
+}
 
 @layer base {
   * {

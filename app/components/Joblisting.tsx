@@ -1,4 +1,6 @@
 import React from 'react';
+import JobCard from './JobCard';
+import job  from '../data/job';
 
 const JobListingPage = () => {
   return (
@@ -66,6 +68,10 @@ const JobListingPage = () => {
             <h2 className="text-2xl font-semibold">Recommended Jobs</h2>
             <div className="text-gray-500">Sort by: Last updated</div>
           </div>
+            
+            {/* Job Card */}
+
+            <JobCard  job={job}/>
         </section>
       </div>
     </div>  
