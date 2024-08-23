@@ -1,6 +1,6 @@
 import { Sparkle } from "lucide-react";
-import { AnimatedGrid } from "./components/background";
-import { MarqueeDemoVertical } from "./components/marquee";
+import { AnimatedGrid } from "./components/Background";
+import { MarqueeDemoVertical } from "./components/Marquee";
 import { Button } from "@/components/ui/button";
 
 
@@ -20,7 +20,6 @@ export default function Home() {
       <div className="">
         <MarqueeDemoVertical />
       </div>
-
     </main>
   );
 }

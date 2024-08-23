@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar";
-import { SessionProvider } from "next-auth/react"
+import Navbar from "./components/Navbar";
+import { getServerSession } from "next-auth";
+import SessionProvider from "./components/SessionProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -11,19 +12,20 @@ export const metadata: Metadata = {
   description: "Job marketplace",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
   return (
-    // <SessionProvider session={session}>  
     <html lang="en">
       <body className={outfit.className}>
+    <SessionProvider session={session}>  
         <Navbar/>
         {children}
+    </SessionProvider>
       </body>
     </html>
-    // </SessionProvider>
   );
 }

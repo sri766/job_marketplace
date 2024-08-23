@@ -16,18 +16,20 @@ import {
 import Image from 'next/image';
 
 import { Button } from '../../components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
 const Navbar = () => {
 
-  // const { data: session } = useSession()
+  const { data: session } = useSession()
 
-  const isLogin = false;
+  // const isLogin = false;
 
   return (
-    <nav className={`flex justify-center items-center h-[40px] md:h-[90px] ${isLogin ? 'bg-slate-950 text-white' : 'bg-transparent'} transition-colors duration-500`}>
-      <div className='flex justify-between items-center w-full max-w-5xl'>
+    <>
+    <nav className={`flex justify-center items-center h-[40px] md:h-[90px] ${session ? 'bg-black text-white' : 'bg-transparent'} transition-colors duration-500`}>
+      <div className='flex justify-between items-center w-full max-w-7xl'>
         <div className='logo flex justify-start items-center'>
-          <h1 className='text-3xl flex justify-center items-center font-bold gradient-text'>
+          <h1 className='text-3xl flex justify-center items-center font-bold '>
             <Briefcase size={38} className='inline m-2'/>
             JobNest
           </h1>
@@ -41,7 +43,7 @@ const Navbar = () => {
         </div>
         <div className='profile'>
           {
-            isLogin ? (
+            session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger className='flex gap-2'>
                   <Image src="https://avatar.vercel.sh/mohit" className="rounded-full border-2 border-gray-500" alt='Profile' width={34} height={34} />
@@ -66,6 +68,8 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    <Separator/>
+    </>
   );
 }
 
