@@ -8,7 +8,7 @@ import SessionProvider from "./components/SessionProvider";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "JobHunt",
+  title: "JobNest",
   description: "Job marketplace",
 };
 

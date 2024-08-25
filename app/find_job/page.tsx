@@ -52,7 +52,7 @@ const page = () => {
       ):(
         <>
           <div className=''>
-            <h1>Please Sign IN to See the page!!</h1>
+            <h1>Please Sign in to See the page!!</h1>
           </div>
         </>
       )
