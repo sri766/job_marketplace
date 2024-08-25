@@ -95,6 +95,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        fadeInOut: 'fadeInOut 9s linear infinite',
       },
     },
   },

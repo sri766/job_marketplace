@@ -8,7 +8,7 @@ import SessionProvider from "./components/SessionProvider";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "JobHunt",
+  title: "JobNest",
   description: "Job marketplace",
 };
 
@@ -21,10 +21,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-    <SessionProvider session={session}>  
-        <Navbar/>
-        {children}
-    </SessionProvider>
+        <SessionProvider session={session}>  
+            <Navbar/>
+            {children}
+        </SessionProvider>
       </body>
     </html>
   );
