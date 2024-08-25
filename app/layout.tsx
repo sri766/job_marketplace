@@ -21,10 +21,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-    <SessionProvider session={session}>  
+    
         <Navbar/>
         {children}
-    </SessionProvider>
+
       </body>
     </html>
   );

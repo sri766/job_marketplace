@@ -2,7 +2,6 @@
 import { Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
-import { useSession, signIn, signOut } from "next-auth/react"
 
 
 import {
@@ -20,16 +19,15 @@ import { Separator } from '@/components/ui/separator';
 
 const Navbar = () => {
 
-  const { data: session } = useSession()
 
   // const isLogin = false;
 
   return (
     <>
-    <nav className={`flex justify-center items-center h-[40px] md:h-[90px] ${session ? 'bg-black text-white' : 'bg-transparent'} transition-colors duration-500`}>
+    <nav className={`flex justify-center items-center h-[40px] md:h-[90px]`}>
       <div className='flex justify-between items-center w-full max-w-7xl'>
         <div className='logo flex justify-start items-center'>
-          <h1 className='text-3xl flex justify-center items-center font-bold '>
+          <h1 className='text-3xl flex justify-center items-center font-bold ' >
             <Briefcase size={38} className='inline m-2'/>
             JobNest
           </h1>
@@ -43,7 +41,7 @@ const Navbar = () => {
         </div>
         <div className='profile'>
           {
-            session ? (
+           
               <DropdownMenu>
                 <DropdownMenuTrigger className='flex gap-2'>
                   <Image src="https://avatar.vercel.sh/mohit" className="rounded-full border-2 border-gray-500" alt='Profile' width={34} height={34} />
@@ -55,15 +53,15 @@ const Navbar = () => {
                   <DropdownMenuItem>Profile</DropdownMenuItem>
                   <DropdownMenuItem>About</DropdownMenuItem>
                   <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem onClick={()=>signOut()}>Sign Out</DropdownMenuItem>
+                  <DropdownMenuItem >Sign Out</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : (
-              <div className='flex gap-2'>
-                <Button variant="outline" onClick={()=> signIn()}>Login</Button>
-                <Button>Create an Account</Button>
-              </div>
-            )
+            // ) : (
+            //   <div className='flex gap-2'>
+            //     <Button variant="outline" onClick={()=> signIn()}>Login</Button>
+            //     <Button>Create an Account</Button>
+            //   </div>
+            // )
           }
         </div>
       </div>
