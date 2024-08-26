@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
+import { cn } from "@/lib/utils";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -20,11 +21,8 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={outfit.className}>
-    
-        <Navbar/>
+      <body className={cn(`font-orkney`)}>
         {children}
-
       </body>
     </html>
   );

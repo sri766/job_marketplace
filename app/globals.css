@@ -111,11 +111,14 @@
   src: url('/public/orkney-regular.otf') format('opentype');
 }
 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
+
+    @apply font-orkney;
     @apply bg-background text-foreground;
   }
 }

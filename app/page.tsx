@@ -3,11 +3,13 @@ import { AnimatedGrid } from "./components/Background";
 import { MarqueeDemoVertical } from "./components/Marquee";
 import { Button } from "@/components/ui/button";
 import ScrollingTextWithImage from "./components/ScrollText";
+import Navbar from "./components/Navbar";
 
 
 export default function Home() {
   return (
     <>
+      <Navbar/>
       <div className="flex min-h-screen items-center justify-evenly">
         <AnimatedGrid />
         <div className="flex flex-col items-center justify-center space-y-4">
