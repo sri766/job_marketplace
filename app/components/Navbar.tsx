@@ -2,6 +2,8 @@
 import { Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import md5 from 'md5'
 
 import {
   DropdownMenu,
@@ -20,7 +22,7 @@ import { User } from '@supabase/supabase-js';
 
 const Navbar = () => {
 
-  const [user, setUser] = useState<User | null>();
+  const [user, setUser] = useState<User | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -37,6 +39,8 @@ const Navbar = () => {
 
   if (!isMounted) return null;
   console.log(user);
+
+  const gravatarUrl = user? `https://www.gravatar.com/avatar/${md5(user.email || '')}?d=identicon` : '';
 
   return (
     <>
@@ -83,10 +87,10 @@ const Navbar = () => {
           <div className="profile">
             {user ? (
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex gap-2">
+                <DropdownMenuTrigger className="flex gap-2 items-center outline-none">
                   <Image
-                    src="https://avatar.vercel.sh/mohit"
-                    className="rounded-full border-2 border-gray-500"
+                    src={gravatarUrl}
+                    className="rounded-full border-2 border-gray-200"
                     alt="Profile"
                     width={34}
                     height={34}
@@ -94,11 +98,14 @@ const Navbar = () => {
                   <span className="text-lg font-semibold">
                     Hi, {user.email}
                   </span>
+                  <ChevronDown className="flex justify-center" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href={`/profile/{user.id}`}>Profile</Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem>About</DropdownMenuItem>
                   <DropdownMenuItem>Team</DropdownMenuItem>
                   <DropdownMenuItem
