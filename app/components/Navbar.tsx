@@ -17,6 +17,7 @@ import { Button } from '../../components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { supabaseBrowserClient } from '../utils/supabase/client';
 import { User } from '@supabase/supabase-js';
+import { cn } from '@/lib/utils';
 
 const Navbar = () => {
 
@@ -40,13 +41,15 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`flex justify-center items-center h-[40px] md:h-[90px]`}>
+      <nav className={cn(user ? `bg-black text-white`: `bg-white text-black` ,`flex justify-center items-center h-[40px] md:h-[90px]`)}>
         <div className="flex justify-between items-center w-full max-w-7xl">
           <div className="logo flex justify-start items-center">
-            <h1 className="text-3xl flex justify-center items-center font-bold ">
-              <Briefcase size={38} className="inline m-2" />
-              JobNest
-            </h1>
+            <Link href='/'>
+              <h1 className="text-3xl flex justify-center items-center font-bold">
+                <Briefcase size={38} className="inline m-2" />
+                JobNest
+              </h1>
+            </Link>
           </div>
           <div className="flex justify-center font-light items-center gap-10 text-sm md:text-lg">
             <Link
@@ -59,7 +62,7 @@ const Navbar = () => {
               href="/"
               className="hover:text-gray-400 transition-colors duration-300"
             >
-              Message
+              Institute
             </Link>
             <Link
               href="/"
