@@ -8,13 +8,9 @@ import  JobListingPage  from '../components/Joblisting';
 
 const page = () => {
 
-  const { data: session } = useSession()
 
   return (
-    <>
-    {
       
-      session ? (
         <>
         <div className='flex w-full justify-evenly py-6 items-center bg-black h-[100px] text-white'>
           <div className='flex justify-center items-center gap-2'>
@@ -49,15 +45,7 @@ const page = () => {
         <JobListingPage/>
         
         </>
-      ):(
-        <>
-          <div className=''>
-            <h1>Please Sign in to See the page!!</h1>
-          </div>
-        </>
-      )
-    }
-    </>
+     
   )
 }
 

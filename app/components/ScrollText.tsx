@@ -8,7 +8,7 @@ import image1 from '../../public/image1.jpg';
 import image2 from '../../public/image2.png';
 import image3 from '../../public/image3.jpg'; 
 
-interface Section {
+type Section = {
   text: string;
   description: string;
   image: StaticImageData; 
@@ -41,7 +41,8 @@ const ScrollingTextWithImage: React.FC = () => {
       if (textContainerRef.current) {
         const { scrollTop, scrollHeight, clientHeight } = textContainerRef.current;
         const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
-        const newSection = Math.floor(scrollPercentage * sections.length);
+        let newSection = Math.floor(scrollPercentage * sections.length);
+        newSection = Math.max(0,Math.min(newSection, sections.length - 1))
         if (newSection !== currentSection) {
           setCurrentSection(newSection);
         }
@@ -93,8 +94,7 @@ const ScrollingTextWithImage: React.FC = () => {
               <Image
                 src={sections[currentSection].image}
                 alt={sections[currentSection].text}
-                layout="fill"
-                objectFit="cover"
+                fill={true}
                 className="rounded-lg"
               />
             </motion.div>

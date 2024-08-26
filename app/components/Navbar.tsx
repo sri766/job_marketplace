@@ -33,7 +33,7 @@ const Navbar = () => {
           </h1>
         </div>
         <div className='flex justify-center font-light items-center gap-10 text-sm md:text-lg'>
-          <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Find job</Link>
+          <Link href='/find_job' className='hover:text-gray-400 transition-colors duration-300'>Find job</Link>
           <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Message</Link>
           <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Hiring</Link>
           <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Community</Link>
