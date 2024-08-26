@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Lexend, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import { getServerSession } from "next-auth";
@@ -7,6 +7,7 @@ import SessionProvider from "./components/SessionProvider";
 import { cn } from "@/lib/utils";
 
 const outfit = Outfit({ subsets: ["latin"] });
+const lex = Lexend({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "JobNest",
@@ -21,7 +22,7 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={cn(`font-orkney`)}>
+      <body className={cn(`tracking-tighter`,lex.className)}>
         {children}
       </body>
     </html>

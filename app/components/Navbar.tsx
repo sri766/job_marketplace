@@ -1,7 +1,7 @@
 "use client";
 import { Briefcase } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   DropdownMenu,
@@ -15,31 +15,85 @@ import Image from 'next/image';
 
 import { Button } from '../../components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { supabaseBrowserClient } from '../utils/supabase/client';
+import { User } from '@supabase/supabase-js';
 
 const Navbar = () => {
 
+  const [user, setUser] = useState<User | null>();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { session }, } = await supabaseBrowserClient.auth.getSession();
+      if (session) {
+        setUser(session.user);
+      }
+    };
+
+    getUser();
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
+  console.log(user);
+
   return (
     <>
-    <nav className={`flex justify-center items-center h-[40px] md:h-[90px]`}>
-      <div className='flex justify-between items-center w-full max-w-7xl'>
-        <div className='logo flex justify-start items-center'>
-          <h1 className='text-3xl flex justify-center items-center font-bold '>
-            <Briefcase size={38} className='inline m-2'/>
-            JobNest
-          </h1>
-        </div>
-        <div className='flex justify-center font-light items-center gap-10 text-sm md:text-lg'>
-          <Link href='/find_job' className='hover:text-gray-400 transition-colors duration-300'>Find job</Link>
-          <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Message</Link>
-          <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Hiring</Link>
-          <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>Community</Link>
-          <Link href='/' className='hover:text-gray-400 transition-colors duration-300'>FAQ</Link>
-        </div>
-        <div className='profile'>
-              {/* <DropdownMenu>
-                <DropdownMenuTrigger className='flex gap-2'>
-                  <Image src="https://avatar.vercel.sh/mohit" className="rounded-full border-2 border-gray-500" alt='Profile' width={34} height={34} />
-                  <span className='text-lg font-semibold'>Hi, User</span>
+      <nav className={`flex justify-center items-center h-[40px] md:h-[90px]`}>
+        <div className="flex justify-between items-center w-full max-w-7xl">
+          <div className="logo flex justify-start items-center">
+            <h1 className="text-3xl flex justify-center items-center font-bold ">
+              <Briefcase size={38} className="inline m-2" />
+              JobNest
+            </h1>
+          </div>
+          <div className="flex justify-center font-light items-center gap-10 text-sm md:text-lg">
+            <Link
+              href="/find_job"
+              className="hover:text-gray-400 transition-colors duration-300"
+            >
+              Find job
+            </Link>
+            <Link
+              href="/"
+              className="hover:text-gray-400 transition-colors duration-300"
+            >
+              Message
+            </Link>
+            <Link
+              href="/"
+              className="hover:text-gray-400 transition-colors duration-300"
+            >
+              Hiring
+            </Link>
+            <Link
+              href="/"
+              className="hover:text-gray-400 transition-colors duration-300"
+            >
+              Community
+            </Link>
+            <Link
+              href="/"
+              className="hover:text-gray-400 transition-colors duration-300"
+            >
+              FAQ
+            </Link>
+          </div>
+          <div className="profile">
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex gap-2">
+                  <Image
+                    src="https://avatar.vercel.sh/mohit"
+                    className="rounded-full border-2 border-gray-500"
+                    alt="Profile"
+                    width={34}
+                    height={34}
+                  />
+                  <span className="text-lg font-semibold">
+                    Hi, {user.email}
+                  </span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -47,17 +101,30 @@ const Navbar = () => {
                   <DropdownMenuItem>Profile</DropdownMenuItem>
                   <DropdownMenuItem>About</DropdownMenuItem>
                   <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem >Sign Out</DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={async () => {
+                      await supabaseBrowserClient.auth.signOut();
+                      setUser(null);
+                    }}
+                  >
+                    Sign Out
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu> */}
-              <div className='flex gap-2'>
-                <Link href='/login'><Button variant="outline">Login</Button></Link>
-                <Button>Create an Account</Button>
+              </DropdownMenu>
+            ) : (
+              <div className="flex gap-2">
+                <Link href="/login">
+                  <Button variant="outline">Login</Button>
+                </Link>
+                <Link href="/register">
+                  <Button>Create an Account</Button>
+                </Link>
               </div>
+            )}
+          </div>
         </div>
-      </div>
-    </nav>
-    <Separator/>
+      </nav>
+      <Separator />
     </>
   );
 }
