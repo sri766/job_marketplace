@@ -70,6 +70,9 @@
   background: linear-gradient(90deg, #0713ff 0%, #00c8ff 100%);
 }
 
+.gradient-red{
+  background: linear-gradient(90deg, #ff0073 0%, #F7B21A 100%);
+}
 @keyframes fadeInOut {
   0% {
     opacity: 0;
