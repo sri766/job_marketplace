@@ -1,11 +1,11 @@
 'use client'
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { createClient } from "../utils/supabase/server";
+import { supabaseServerClient } from "../utils/supabase/server";
 
 export default function SignUpForm() {
 
-    const supabase = createClient();
+    const supabase = supabaseServerClient();
 
     const signUp = async (
     firstName: string,
