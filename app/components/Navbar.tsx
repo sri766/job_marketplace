@@ -45,10 +45,15 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={cn(user ? `bg-black text-white`: `bg-white text-black` ,`flex justify-center items-center h-[40px] md:h-[90px]`)}>
+      <nav
+        className={cn(
+          user ? `bg-black text-white` : `bg-white text-black`,
+          `flex justify-center items-center h-[40px] md:h-[90px]`
+        )}
+      >
         <div className="flex justify-between items-center w-full max-w-7xl">
           <div className="logo flex justify-start items-center">
-            <Link href='/'>
+            <Link href="/">
               <h1 className="text-3xl flex justify-center items-center font-bold">
                 <Briefcase size={38} className="inline m-2" />
                 JobNest
@@ -63,7 +68,7 @@ const Navbar = () => {
               Find job
             </Link>
             <Link
-              href="/"
+              href="/institutions"
               className="hover:text-gray-400 transition-colors duration-300"
             >
               Institute
